@@ -136,7 +136,7 @@ class DefaultAccountAdapter(object):
         msg = self.render_mail(template_prefix, email, context)
         msg.send()
 
-    def get_login_redirect_url(self, request):
+    def get_login_redirect_url(self, request, redirect_url):
         """
         Returns the default URL to redirect to after logging in.  Note
         that URLs passed explicitly (e.g. by passing along a `next`

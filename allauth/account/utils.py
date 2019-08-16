@@ -37,16 +37,12 @@ def get_next_redirect_url(request, redirect_field_name="next"):
 
 
 def get_login_redirect_url(request, url=None, redirect_field_name="next"):
-    if url and callable(url):
-        # In order to be able to pass url getters around that depend
-        # on e.g. the authenticated state.
-        url = url()
     redirect_url = (
-        url or
         get_next_redirect_url(
             request,
             redirect_field_name=redirect_field_name) or
-        get_adapter(request).get_login_redirect_url(request))
+        get_adapter(request).get_login_redirect_url(request, url)
+    )
     return redirect_url
 
 
